@@ -1,4 +1,4 @@
-from index import findAtLeastCost
+from index import getPrimAlgorithm
 from scipy.optimize import curve_fit
 import timeit
 import matplotlib.pyplot as plt
@@ -28,7 +28,7 @@ def RandomTest(n):
     return edges
 
 def benchmark(nodeCount,input,iterations=1):
-    return timeit.timeit(lambda: findAtLeastCost(nodeCount,0,input), number=iterations)*1000
+    return timeit.timeit(lambda: getPrimAlgorithm(nodeCount,input), number=iterations)*1000
 
 def PerformanceTest(maxValue,testCase,sampleAmount):
     nodeCounts = np.linspace(2, maxValue, 50)
