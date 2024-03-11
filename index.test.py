@@ -1,4 +1,4 @@
-from index import getPrimAlgorithm
+from index import getMaximumWeight
 from scipy.optimize import curve_fit
 import timeit
 import matplotlib.pyplot as plt
@@ -9,8 +9,7 @@ import random as rand
 #---------Test Case--------------------
 
 def worstTestCase(n):
-    inp = [[(k,j,int(j*(j-1)/2+k))for k in range(j)]for j in range (1,n-1)]
-    inp.append([(0,n-1,-1)])
+    inp = [[(k,j,int(j*(j-1)/2+k))for k in range(j)]for j in range (1,n)]
     return np.concatenate(inp) 
 
 def bestTestCase(n):
@@ -28,7 +27,7 @@ def RandomTest(n):
     return edges
 
 def benchmark(nodeCount,input,iterations=1):
-    return timeit.timeit(lambda: getPrimAlgorithm(nodeCount,input), number=iterations)*1000
+    return timeit.timeit(lambda: getMaximumWeight(nodeCount,input), number=iterations)*1000
 
 def PerformanceTest(maxValue,testCase,sampleAmount):
     nodeCounts = np.linspace(2, maxValue, 50)
@@ -56,4 +55,4 @@ def PerformanceTest(maxValue,testCase,sampleAmount):
     plt.show()
 
 if __name__ == '__main__':
-    PerformanceTest(202,RandomTest,15)
+    PerformanceTest(202,RandomTest,10)
